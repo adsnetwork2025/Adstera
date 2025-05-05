@@ -1,133 +1,83 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html>
 <head>
   <meta charset="UTF-8">
-  <title>Mini Income App</title>
+  <title>Free Income 2025 - Micro Job</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #eef2f3;
-      text-align: center;
-      padding: 20px;
-    }
-    .container {
-      background: white;
-      max-width: 400px;
-      margin: auto;
-      padding: 25px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    h2 {
-      margin-bottom: 15px;
-      color: #444;
-    }
-    .balance {
-      font-size: 18px;
-      margin: 15px 0;
-      color: green;
-    }
-    input, select {
-      width: 100%;
-      padding: 10px;
-      margin-top: 8px;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-    }
-    button {
-      padding: 12px 20px;
-      margin-top: 12px;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 15px;
-      width: 100%;
-    }
-    .view-btn { background-color: #2196F3; color: white; }
-    .withdraw-btn { background-color: #4CAF50; color: white; }
+    body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+    .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
+    h2 { text-align: center; }
+    button { width: 100%; padding: 10px; margin-top: 10px; font-size: 16px; border-radius: 8px; border: none; cursor: pointer; background: #4CAF50; color: white; }
+    .task-box, .profile-box, .submit-box, .withdraw-box, .refer-box, .activation-box { display: none; }
+    textarea, input { width: 100%; padding: 10px; margin: 5px 0; border-radius: 6px; border: 1px solid #ccc; }
+    .show { display: block; }
   </style>
 </head>
 <body>
-
   <div class="container">
-    <h2>Ad দেখে ইনকাম করুন</h2>
-    <p class="balance">বর্তমান ব্যালেন্স: <span id="balance">৳0.00</span></p>
-    
-    <button class="view-btn" onclick="viewAd()">Ad View করুন (৳0.20)</button>
+    <h2>Free Income 2025</h2>
+    <button onclick="showSection('task-box')">My Job</button>
+    <button onclick="showSection('submit-box')">Submit Task</button>
+    <button onclick="showSection('withdraw-box')">Withdraw</button>
+    <button onclick="showSection('refer-box')">Refer</button>
+    <button onclick="showSection('profile-box')">Profile</button>
+    <button onclick="showSection('activation-box')">Account Active</button>
 
-    <h3 style="margin-top:25px;">Withdraw Request</h3>
-    <input type="text" id="number" placeholder="Bkash/Nagad নম্বর">
-    <select id="method">
-      <option value="Bkash">Bkash</option>
-      <option value="Nagad">Nagad</option>
-    </select>
-    <button class="withdraw-btn" onclick="withdraw()">Withdraw</button>
+    <div id="task-box" class="task-box">
+      <h3>Today's Task</h3>
+      <p><b>Title:</b> Visit this website</p>
+      <p><b>Description:</b> Go to https://example.com and stay for 1 minute.</p>
+      <p><b>Reward:</b> 5 Taka</p>
+    </div>
+
+    <div id="submit-box" class="submit-box">
+      <h3>Submit Your Task</h3>
+      <input type="text" placeholder="Your Telegram Username">
+      <textarea placeholder="Paste proof or description..."></textarea>
+      <button>Submit</button>
+    </div>
+
+    <div id="withdraw-box" class="withdraw-box">
+      <h3>Withdraw</h3>
+      <input type="number" placeholder="Amount (Min: 50)">
+      <select>
+        <option>Bkash</option>
+        <option>Nagad</option>
+      </select>
+      <input type="text" placeholder="Your Number">
+      <button>Request Withdraw</button>
+    </div>
+
+    <div id="refer-box" class="refer-box">
+      <h3>Your Referral Link</h3>
+      <p>https://t.me/FreeIncome2025Bot?start=YOURID</p>
+    </div>
+
+    <div id="profile-box" class="profile-box">
+      <h3>Your Profile</h3>
+      <p><b>Name:</b> User Name</p>
+      <p><b>Username:</b> @username</p>
+      <p><b>ID:</b> 123456</p>
+      <p><b>Balance:</b> 100 Taka</p>
+      <p><b>Total Withdraw:</b> 50 Taka</p>
+      <p><b>Total Task Completed:</b> 10</p>
+    </div>
+
+    <div id="activation-box" class="activation-box">
+      <h3>Activate Your Account</h3>
+      <p>Send 50 Taka to Bkash/Nagad number: <b>01XXXXXXXXX</b></p>
+      <input type="text" placeholder="Transaction ID">
+      <button>Submit</button>
+    </div>
   </div>
 
   <script>
-    const adUrl = "https://www.profitableratecpm.com/h7qgvxieax?key=5eb9d14fd284744377da3ced29ad1e63";
-    const botToken = "7452246547:AAFb6Xp3G1fpnoPkP-CdmB7CslMcjQLvuik";
-    const chatId = "6593402184";
-    const perAdEarn = 0.10;
-    const minWithdraw = 50;
-
-    function getBalance() {
-      const saved = localStorage.getItem("userBalance");
-      return saved ? parseFloat(saved) : 0;
-    }
-
-    function setBalance(amount) {
-      localStorage.setItem("userBalance", amount.toFixed(2));
-      document.getElementById("balance").innerText = "৳" + amount.toFixed(2);
-    }
-
-    function viewAd() {
-      let current = getBalance();
-      current += perAdEarn;
-      setBalance(current);
-      window.open(adUrl, "_blank");
-    }
-
-    function withdraw() {
-      const number = document.getElementById("number").value.trim();
-      const method = document.getElementById("method").value;
-      const balance = getBalance();
-
-      if (number === "") {
-        alert("আপনার নম্বর দিন");
-        return;
-      }
-
-      if (balance < minWithdraw) {
-        alert("উইথড্র করতে হলে অন্তত ৳৫০ প্রয়োজন");
-        return;
-      }
-
-      const message = 📥 নতুন উইথড্র রিকোয়েস্ট:\nমেথড: ${method}\nনম্বর: ${number}\nটাকা: ৳${balance.toFixed(2)}\nতারিখ: ${new Date().toLocaleString()};
-
-      fetch(https://api.telegram.org/bot${botToken}/sendMessage, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text: message })
-      })
-      .then(res => {
-        if (res.ok) {
-          alert("উইথড্র রিকোয়েস্ট পাঠানো হয়েছে!");
-          setBalance(0);
-        } else {
-          alert("সার্ভার সমস্যা, আবার চেষ্টা করুন");
-        }
-      })
-      .catch(err => {
-        alert("নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন");
+    function showSection(id) {
+      document.querySelectorAll('.task-box, .submit-box, .withdraw-box, .refer-box, .profile-box, .activation-box').forEach(section => {
+        section.classList.remove('show');
       });
-    }
-
-    // Page load এ ব্যালেন্স দেখাও
-    window.onload = () => {
-      setBalance(getBalance());
+      document.getElementById(id).classList.add('show');
     }
   </script>
-
 </body>
 </html>
