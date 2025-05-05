@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <title>Mini Income App</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #eef2f3;
+      text-align: center;
+      padding: 20px;
+    }
+    .container {
+      background: white;
+      max-width: 400px;
+      margin: auto;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      margin-bottom: 15px;
+      color: #444;
+    }
+    .balance {
+      font-size: 18px;
+      margin: 15px 0;
+      color: green;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      padding: 12px 20px;
+      margin-top: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+      width: 100%;
+    }
+    .view-btn { background-color: #2196F3; color: white; }
+    .withdraw-btn { background-color: #4CAF50; color: white; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Ad দেখে ইনকাম করুন</h2>
+    <p class="balance">বর্তমান ব্যালেন্স: <span id="balance">৳0.00</span></p>
+    
+    <button class="view-btn" onclick="viewAd()">Ad View করুন (৳0.20)</button>
+
+    <h3 style="margin-top:25px;">Withdraw Request</h3>
+    <input type="text" id="number" placeholder="Bkash/Nagad নম্বর">
+    <select id="method">
+      <option value="Bkash">Bkash</option>
+      <option value="Nagad">Nagad</option>
+    </select>
+    <button class="withdraw-btn" onclick="withdraw()">Withdraw</button>
+  </div>
+
+  <script>
+    const adUrl = "https://www.profitableratecpm.com/nbmjgzrk?key=91e21304ec27dc0b2faf26519a662d47";
+    const botToken = "7452246547:AAFb6Xp3G1fpnoPkP-CdmB7CslMcjQLvuik";
+    const chatId = "6593402184";
+    const perAdEarn = 10;
+    const minWithdraw = 5;
+
+    function getBalance() {
+      const saved = localStorage.getItem("userBalance");
+      return saved ? parseFloat(saved) : 0;
+    }
+
+    function setBalance(amount) {
+      localStorage.setItem("userBalance", amount.toFixed(2));
+      document.getElementById("balance").innerText = "৳" + amount.toFixed(2);
+    }
+
+    function viewAd() {
+      let current = getBalance();
+      current += perAdEarn;
+      setBalance(current);
+      window.open(adUrl, "_blank");
+    }
+
+    function withdraw() {
+      const number = document.getElementById("number").value.trim();
+      const method = document.getElementById("method").value;
+      const balance = getBalance();
+
+      if (number === "") {
+        alert("আপনার নম্বর দিন");
+        return;
+      }
+
+      if (balance < minWithdraw) {
+        alert("উইথড্র করতে হলে অন্তত ৳৫০ প্রয়োজন");
+        return;
+      }
+
+      const message = 📥 নতুন উইথড্র রিকোয়েস্ট:\nমেথড: ${method}\nনম্বর: ${number}\nটাকা: ৳${balance.toFixed(2)}\nতারিখ: ${new Date().toLocaleString()};
+
+      fetch(https://api.telegram.org/bot${botToken}/sendMessage, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: chatId, text: message })
+      })
+      .then(res => {
+        if (res.ok) {
+          alert("উইথড্র রিকোয়েস্ট পাঠানো হয়েছে!");
+          setBalance(0);
+        } else {
+          alert("সার্ভার সমস্যা, আবার চেষ্টা করুন");
+        }
+      })
+      .catch(err => {
+        alert("নেটওয়ার্ক সমস্যা! আবার চেষ্টা করুন");
+      });
+    }
+
+    // Page load এ ব্যালেন্স দেখাও
+    window.onload = () => {
+      setBalance(getBalance());
+    }
+  </script>
+
+</body>
+</html>
