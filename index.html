@@ -46,9 +46,6 @@
     .view-btn { background-color: #2196F3; color: white; }
     .withdraw-btn { background-color: #4CAF50; color: white; }
   </style>
-
-  <!-- Monetag Ad Script -->
-  <script src='//whephiwums.com/sdk.js' data-zone='9295890' data-sdk='show_9295890'></script>
 </head>
 <body>
 
@@ -68,10 +65,11 @@
   </div>
 
   <script>
+    const adUrl = "https://www.profitableratecpm.com/h7qgvxieax?key=5eb9d14fd284744377da3ced29ad1e63";
     const botToken = "7452246547:AAFb6Xp3G1fpnoPkP-CdmB7CslMcjQLvuik";
     const chatId = "6593402184";
-    const perAdEarn = 20;
-    const minWithdraw = 10;
+    const perAdEarn = 0.10;
+    const minWithdraw = 50;
 
     function getBalance() {
       const saved = localStorage.getItem("userBalance");
@@ -87,7 +85,7 @@
       let current = getBalance();
       current += perAdEarn;
       setBalance(current);
-      alert("Ad দেখা শুরু হয়েছে (Monetag বিজ্ঞাপন ওপেন হয়েছে)।");
+      window.open(adUrl, "_blank");
     }
 
     function withdraw() {
@@ -105,9 +103,9 @@
         return;
       }
 
-      const message = `নতুন উইথড্র রিকোয়েস্ট:\nমেথড: ${method}\nনম্বর: ${number}\nটাকা: ৳${balance.toFixed(2)}\nতারিখ: ${new Date().toLocaleString()}`;
+      const message = 📥 নতুন উইথড্র রিকোয়েস্ট:\nমেথড: ${method}\nনম্বর: ${number}\nটাকা: ৳${balance.toFixed(2)}\nতারিখ: ${new Date().toLocaleString()};
 
-      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+      fetch(https://api.telegram.org/bot${botToken}/sendMessage, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ chat_id: chatId, text: message })
@@ -125,6 +123,7 @@
       });
     }
 
+    // Page load এ ব্যালেন্স দেখাও
     window.onload = () => {
       setBalance(getBalance());
     }
