@@ -46,6 +46,9 @@
     .view-btn { background-color: #2196F3; color: white; }
     .withdraw-btn { background-color: #4CAF50; color: white; }
   </style>
+
+  <!-- Monetag Ad Script -->
+  <script src='//whephiwums.com/sdk.js' data-zone='9295890' data-sdk='show_9295890'></script>
 </head>
 <body>
 
@@ -53,7 +56,7 @@
     <h2>Ad দেখে ইনকাম করুন</h2>
     <p class="balance">বর্তমান ব্যালেন্স: <span id="balance">৳0.00</span></p>
     
-    <button class="view-btn" onclick="viewAd()">Ad View করুন (৳0.10)</button>
+    <button class="view-btn" onclick="viewAd()">Ad View করুন (৳0.20)</button>
 
     <h3 style="margin-top:25px;">Withdraw Request</h3>
     <input type="text" id="number" placeholder="Bkash/Nagad নম্বর">
@@ -65,11 +68,10 @@
   </div>
 
   <script>
-    const adUrl = "https://www.profitableratecpm.com/f8s6m22i?key=a74991640f8e2cf26a1aedce92a9f25e";
     const botToken = "7452246547:AAFb6Xp3G1fpnoPkP-CdmB7CslMcjQLvuik";
     const chatId = "6593402184";
-    const perAdEarn = 10;
-    const minWithdraw = 5;
+    const perAdEarn = 20;
+    const minWithdraw = 10;
 
     function getBalance() {
       const saved = localStorage.getItem("userBalance");
@@ -85,7 +87,7 @@
       let current = getBalance();
       current += perAdEarn;
       setBalance(current);
-      window.open(adUrl, "_blank");
+      alert("Ad দেখা শুরু হয়েছে (Monetag বিজ্ঞাপন ওপেন হয়েছে)।");
     }
 
     function withdraw() {
@@ -103,9 +105,9 @@
         return;
       }
 
-      const message = 📥 নতুন উইথড্র রিকোয়েস্ট:\nমেথড: ${method}\nনম্বর: ${number}\nটাকা: ৳${balance.toFixed(2)}\nতারিখ: ${new Date().toLocaleString()};
+      const message = `নতুন উইথড্র রিকোয়েস্ট:\nমেথড: ${method}\nনম্বর: ${number}\nটাকা: ৳${balance.toFixed(2)}\nতারিখ: ${new Date().toLocaleString()}`;
 
-      fetch(https://api.telegram.org/bot${botToken}/sendMessage, {
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ chat_id: chatId, text: message })
@@ -123,7 +125,6 @@
       });
     }
 
-    // Page load এ ব্যালেন্স দেখাও
     window.onload = () => {
       setBalance(getBalance());
     }
