@@ -87,6 +87,16 @@
       margin-bottom: 15px;
       text-align: center;
     }
+
+    .success-message {
+      display: none;
+      background-color: #d4edda;
+      padding: 10px;
+      border-radius: 5px;
+      color: #155724;
+      text-align: center;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -137,6 +147,11 @@
       <button type="submit">Submit</button>
     </div>
   </form>
+
+  <!-- Success Message -->
+  <div class="success-message" id="successMessage">
+    <h3>Thank you! Your submission was successful.</h3>
+  </div>
 </div>
 
 <script>
@@ -216,7 +231,8 @@ Transaction ID: ${data.trxid}
     .then(res => res.json())
     .then(res => {
       if (res.ok) {
-        alert("Form submitted & sent to Telegram!");
+        document.getElementById("successMessage").style.display = "block";
+        document.getElementById("multiStepForm").reset();
       } else {
         alert("Failed to send message to Telegram.");
       }
